@@ -6,7 +6,7 @@ import CustomButton from "../Components/CustomButton";
 import ResultItem from './../Components/ResultItem';
 
 
-const database = SQLite.openDatabase("dbName", 2.0);
+const db = SQLite.openDatabase("dbName", 2.0);
 
 const Search = ({navigation}) => {
     const [searchResult, setSearchResult] = useState("")
@@ -14,7 +14,7 @@ const Search = ({navigation}) => {
 
     const getSearch = () => {
         try {
-          database.transaction((tx) => {
+          db.transaction((tx) => {
             tx.executeSql("SELECT * FROM DATABASE WHERE ActivityName = ?", [searchResult], (tx, result) => {
               var len = result.rows.length;
               console.log(JSON.stringify(result.rows));
@@ -22,7 +22,7 @@ const Search = ({navigation}) => {
                 let row = result.rows.item(i);
                 setData((prevState) => [
                   ...prevState,
-                  {Id: row.Id, ActivityName: row.ActivityName, Location: row.Location, Date: row.Date, Reporter: row.Reporter},
+                  {Id: row.Id, ActivityName: row.ActivityName, Location: row.Location, Date: row.Date, AttendingTime: row.AttendingTime, Reporter: row.Reporter},
                 ]);
               }
             });

@@ -106,8 +106,8 @@ const Home = ({navigation}) => {
           <TextInput
             style={styles.input}
             placeholder="Time of Attending"
-            onChangeText={(value) => setReporter(value)}
-            value = {reporter}
+            onChangeText={(value) => setAttendingTime(value)}
+            value = {attendingTime}
           />
           <TextInput
             style={styles.input}
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
       height: 50,
       width: 300,
       borderRadius: 5,
-      textAlign: "center",
+      textAlign: "left",
       fontSize: 20,
       marginBottom: 10,
       marginTop: 10,
