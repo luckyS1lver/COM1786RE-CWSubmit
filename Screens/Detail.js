@@ -3,7 +3,7 @@ import React from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import CustomButton from "../Components/CustomButton";
 
-const db = SQLite.openDatabase("dbName", 1.0);
+const db = SQLite.openDatabase("dbName", 2.0);
 
 const Detail  = ({ route, navigation }) => {
   const { result } = route.params;

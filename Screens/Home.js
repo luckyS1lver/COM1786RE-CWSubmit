@@ -2,8 +2,9 @@ import { View, Text, Alert, TextInput, StyleSheet } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import CustomButton from '../Components/CustomButton'
 import * as SQlite from "expo-sqlite"
+import Search from './Search'
 
-const database = SQlite.openDatabase("dbName", 1.0)
+const db = SQlite.openDatabase("dbName", 2.0)
 
 const Home = ({navigation}) => {
     const [activityName, setActivityName] = useState("")
@@ -22,7 +23,7 @@ const Home = ({navigation}) => {
             Alert.alert("Warning !!! Please enter inputs !!!");
           } else {
             try {
-              database.transaction((tx) => {
+              db.transaction((tx) => {
                 tx.executeSql(
                   "INSERT INTO DATABASE (ActivityName, Location, Date, AttendingTime, Reporter) VALUES (?,?,?,?,?);",
                   [activityName, location, date, attendingTime, reporter],
@@ -39,11 +40,16 @@ const Home = ({navigation}) => {
           }
     };
 
-    const showResult = () =>{
+    const showResult = () => {
         navigation.navigate("Result");
     };
+
+    const search = () => {
+      navigation.navigate("Search");
+    }
+
     const createTable = () => {
-        database.transaction((tx) => {
+        db.transaction((tx) => {
           tx.executeSql(
             "CREATE TABLE IF NOT EXISTS DATABASE(Id INTEGER PRIMARY KEY AUTOINCREMENT, ActivityName TEXT, Location TEXT, Date TEXT, AttendingTime TEXT, Reporter TEXT);"
           );
@@ -84,7 +90,7 @@ const Home = ({navigation}) => {
           />
           <View style = {{flexDirection:"row"}}>
           <CustomButton title="Show All" handlePress ={showResult} />
-          <CustomButton title="Search" />
+          <CustomButton title="Search" handlePress = {search} />
           <CustomButton title="Submit" handlePress={submit}/>
           </View>
         </View>
