@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import CustomButton from '../Components/CustomButton'
 import * as SQlite from "expo-sqlite"
 import Search from './Search'
+import DatePicker from 'react-native-datepicker'
 
 const db = SQlite.openDatabase("dbName", 2.0)
 
@@ -76,19 +77,39 @@ const Home = ({navigation}) => {
             onChangeText={(value) => setLocation(value)}
             value={location}
           />
-           <TextInput
+        <DatePicker
+          style={styles.datePicker}
+          date={date}
+          mode="date"
+          placeholder="Date(Required)"
+          format="DD-MM-YYYY"
+          minDate="01-01-2015"
+          maxDate="01-01-2025"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateInput: {
+              marginLeft: 36,
+              fontSize: 20,
+            },
+            dateIcon: {
+              position: 'relative',
+              left: 0,
+              top: 4,
+              marginLeft: 0,
+            },
+          }}
+          onDateChange={(date) => {
+            setDate(date);
+          }}
+        />
+          <TextInput
             style={styles.input}
-            placeholder="Date (Required)"
-            onChangeText={(value) => setDate(value)}
-            value={date}
+            placeholder="Time of Attending"
+            onChangeText={(value) => setReporter(value)}
+            value = {reporter}
           />
-           <TextInput
-            style={styles.input}
-            placeholder="Time of attending"
-            onChangeText={(value) => setAttendingTime(value)}
-            value={attendingTime}
-          />
-           <TextInput
+          <TextInput
             style={styles.input}
             placeholder="Name of Reporter (Required)"
             onChangeText={(value) => setReporter(value)}
@@ -123,6 +144,13 @@ const styles = StyleSheet.create({
       fontSize: 20,
       marginBottom: 10,
       marginTop: 10,
+    },
+    datePicker: {
+      alignItems: "center",
+      justifyContent:"center",
+      height:60,
+      width: 370,
+      fontSize:20,
     },
   });
 
