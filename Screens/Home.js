@@ -1,8 +1,7 @@
-import { View, Text, Alert, TextInput, StyleSheet } from 'react-native'
+import { View, Text, Alert, TextInput, StyleSheet, ScrollView } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import CustomButton from '../Components/CustomButton'
 import * as SQlite from "expo-sqlite"
-import Search from './Search'
 import DatePicker from 'react-native-datepicker'
 
 const db = SQlite.openDatabase("dbName", 2.0)
@@ -63,64 +62,66 @@ const Home = ({navigation}) => {
         });
       };
       return (
-        <View style={styles.body}>
-          <Text style={styles.text}>Home</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Activity Name (Required)"
-            onChangeText={(value) => setActivityName(value)}
-            value={activityName}
+        <ScrollView>
+            <View style={styles.body}>
+            <Text style={styles.title}>Home</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Activity Name (Required)"
+              onChangeText={(value) => setActivityName(value)}
+              value={activityName}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Location"
+              onChangeText={(value) => setLocation(value)}
+              value={location}
+            />
+          <DatePicker
+            style={styles.datePicker}
+            date={date}
+            mode="date"
+            placeholder="Date(Required)"
+            format="DD-MM-YYYY"
+            minDate="01-01-2015"
+            maxDate="01-01-2025"
+            customStyles={{
+              dateInput: {
+                marginLeft: 36,
+                fontSize: 20,
+              },
+              dateIcon: {
+                position: 'relative',
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+            }}
+            onDateChange={(date) => {
+              setDate(date);
+            }}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="Location"
-            onChangeText={(value) => setLocation(value)}
-            value={location}
-          />
-        <DatePicker
-          style={styles.datePicker}
-          date={date}
-          mode="date"
-          placeholder="Date(Required)"
-          format="DD-MM-YYYY"
-          minDate="01-01-2015"
-          maxDate="01-01-2025"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateInput: {
-              marginLeft: 36,
-              fontSize: 20,
-            },
-            dateIcon: {
-              position: 'relative',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        />
-          <TextInput
-            style={styles.input}
-            placeholder="Time of Attending"
-            onChangeText={(value) => setAttendingTime(value)}
-            value = {attendingTime}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Name of Reporter (Required)"
-            onChangeText={(value) => setReporter(value)}
-            value={reporter}
-          />
-          <View style = {{flexDirection:"row"}}>
-          <CustomButton title="Show All" handlePress ={showResult} />
-          <CustomButton title="Search" handlePress = {search} />
-          <CustomButton title="Submit" handlePress={submit}/>
+            <TextInput
+              style={styles.input}
+              placeholder="Time of Attending"
+              onChangeText={(value) => setAttendingTime(value)}
+              value = {attendingTime}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Reporter Name (Required)"
+              onChangeText={(value) => setReporter(value)}
+              value={reporter}
+            />              
+            <CustomButton title="Submit" handlePress={submit}/>
+            <View style = {{flexDirection:"row"}}>
+              <CustomButton title="Show All" handlePress ={showResult} />
+              <CustomButton title="Search" handlePress = {search} />
+
+            </View>
           </View>
-        </View>
+        </ScrollView>
+
         )
 }
 
@@ -130,8 +131,8 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "flex-start",
     },
-    text: {
-      fontSize: 40,
+    title: {
+      fontSize: 25,
       fontWeight: "bold",
       margin: 15,
     },
@@ -141,9 +142,10 @@ const styles = StyleSheet.create({
       width: 300,
       borderRadius: 5,
       textAlign: "left",
-      fontSize: 20,
+      fontSize: 15,
       marginBottom: 10,
       marginTop: 10,
+      padding: 10,
     },
     datePicker: {
       alignItems: "center",

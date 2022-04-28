@@ -33,22 +33,21 @@ const Result = ({navigation}) => {
       };
 
     return (
-        <View style={styles.container}>
-      <FlatList
-        data={data}
-        keyExtractor={(item) => String(item.Id)}
-        renderItem={({ item }) => (
-          <ResultItem result={item} navigation={navigation} />
-        )}
-      />
-    </View>
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => String(item.Id)}
+          renderItem={({ item }) => (
+            <ResultItem result={item} navigation={navigation} />
+          )}
+        />
+      </View>
     )
 }
 
 export default Result
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#fff",

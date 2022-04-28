@@ -20,26 +20,14 @@ const ResultItem = ({result, navigation }) => {
         <Text style={styles.text}>Time of attending: {result.AttendingTime}</Text>
         <Text style={styles.text}>Name of reporter: {result.Reporter}</Text>
       </View>
-
-      <TouchableOpacity onPress = {detailResult} style = {styles.button}>
-        <Text style = {{
-          alignItems:"center",
-          justifyContent:"center",
-          paddingHorizontal:20,
-          fontSize:12,
-          textTransform:"uppercase",
-          color:"white"
-        }}>Detail</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onpress = {updateResult} style = {styles.button}>
-        <Text style = {{
-          alignItems:"center",
-          justifyContent:"center",
-          paddingHorizontal:20,
-          fontSize:12,
-          textTransform:"uppercase",
-          color:"white"}}>Update</Text>
-      </TouchableOpacity>
+      <View style={{flexDirection: "row"}}>
+        <TouchableOpacity onPress = {detailResult} style = {styles.button}>
+          <Text style = {styles.buttonText}>Detail</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress = {updateResult} style = {styles.button}>
+          <Text style = {styles.buttonText}>Update</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -49,38 +37,40 @@ export default ResultItem;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "row",
+        flexDirection: "column",
         padding: "2%",
         backgroundColor: "#eee",
         borderRadius: 5,
         marginBottom: "5%",
       },
       text: {
-        fontSize: 20,
-        fontWeight: "bold",
-      },
-      textTitle: {
-        fontSize: 40,
-          fontWeight: "bold",
-          margin: 15,
+        fontSize: 15,
+        marginHorizontal: 12
       },
       Id:{
-        fontSize: 40,
+        fontSize: 15,
         fontWeight: "bold",
-        margin: 15,
-        color:"green"
+        color:"green",
+        marginHorizontal: 5
       },
       button: {
         paddingLeft: 2,
         width: 100,
         height: 50,
         borderWidth: 3,
-        backgroundColor: "blue",
+        backgroundColor: "#68a832",
         fontSize: 250,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 5,
         marginTop:20,
         marginHorizontal:5,
-      }
+      },
+      buttonText:{
+        alignItems:"center",
+        justifyContent:"center",
+        paddingHorizontal:10,
+        fontSize:12,
+        color:"white"
+      },
 })

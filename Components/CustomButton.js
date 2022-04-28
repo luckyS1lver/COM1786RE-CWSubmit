@@ -6,9 +6,9 @@ const CustomButton = (props) => {
   return (
     <View>
         <TouchableOpacity
-            style = {styles.touch}
+            style = {styles.button}
             onPress = {props.handlePress}>
-            <Text style = {styles.Text}>{props.title}</Text>
+            <Text style = {styles.text}>{props.title}</Text>
         </TouchableOpacity>
     </View>
   )
@@ -16,25 +16,24 @@ const CustomButton = (props) => {
 
 const styles = StyleSheet.create(
     {
-        Text:
+        text:
         {
           textTransform:"none",
           color: "white",
-          fontSize: 20,
+          fontSize: 15,
         },
-        touch:
-      {
-        width: 120,
-        height: 50,
-        borderWidth: 3,
-        backgroundColor: "#0066CC",
-        fontSize: 250,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 5,
-        marginTop:20,
-        marginHorizontal:5,
-      }
+        button:
+        {
+          width: 120,
+          height: 50,
+          borderWidth: 3,
+          backgroundColor: "#68a832",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 5,
+          marginVertical:10,
+          marginHorizontal:10,
+        }
     }
 )
 

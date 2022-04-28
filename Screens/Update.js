@@ -6,7 +6,7 @@ import DatePicker from "react-native-datepicker";
 
 const db = SQLite.openDatabase("dbName", 2.0)
 
-const Update = () => {
+const Update = ({route, navigation}) => {
 
     const { result } = route.params; 
 
@@ -64,8 +64,6 @@ const Update = () => {
                 format="DD-MM-YYYY"
                 minDate="01-01-2015"
                 maxDate="01-01-2025"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
                 customStyles={{
                     dateInput: {
                     marginLeft: 36,
@@ -107,7 +105,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
       },
       text: {
-        fontSize: 40,
+        fontSize: 25,
         fontWeight: "bold",
         margin: 15,
       },
@@ -115,11 +113,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 50,
         width: 300,
-        borderRadius: 2,
+        borderRadius: 10,
         textAlign:"left",
         fontSize: 20,
-        marginBottom: 10,
-        marginTop: 10,
+        marginVertical: 10
       },
       picker: {
         height:50,
@@ -130,7 +127,7 @@ const styles = StyleSheet.create({
         borderColor: "#000000",
         borderRadius: 2,
       },
-      datePickerStyle: {
+      datePicker: {
         alignItems: "center",
         justifyContent:"center",
         height:60,
