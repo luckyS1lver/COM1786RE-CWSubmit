@@ -47,11 +47,15 @@ const Home = ({navigation}) => {
     };
 
     const showResult = () => {
-        navigation.navigate("Result");
+      navigation.navigate("Result");
     };
 
     const search = () => {
       navigation.navigate("Search");
+    }
+
+    const notification = () => {
+      navigation.navigate("Notification")
     }
 
     const createTable = () => {
@@ -117,8 +121,8 @@ const Home = ({navigation}) => {
             <View style = {{flexDirection:"row"}}>
               <CustomButton title="Show All" handlePress ={showResult} />
               <CustomButton title="Search" handlePress = {search} />
-
             </View>
+            <CustomButton title="Notification" handlePress = {notification} />
           </View>
         </ScrollView>
 

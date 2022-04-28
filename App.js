@@ -9,7 +9,7 @@ import Result from './Screens/Result';
 import Detail from './Screens/Detail';
 import Search from './Screens/Search';
 import Update from './Screens/Update';
-
+import Notification from './Screens/Notification';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +49,12 @@ export default function App() {
         }}
         name = "Update"
         component={Update} 
+        />
+        <Stack.Screen options={{
+          title: "Notification"
+        }}
+        name = "Notification"
+        component={Notification} 
         />
       </Stack.Navigator>
     </NavigationContainer>

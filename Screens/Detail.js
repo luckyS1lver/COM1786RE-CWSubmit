@@ -1,7 +1,6 @@
 import * as SQLite from "expo-sqlite";
 import React from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
-import DeprecatedStyleSheetPropType from "react-native/Libraries/DeprecatedPropTypes/DeprecatedStyleSheetPropType";
 import CustomButton from "../Components/CustomButton";
 
 const db = SQLite.openDatabase("dbName", 2.0);
@@ -37,7 +36,7 @@ const Detail  = ({ route, navigation }) => {
       <Text style = {styles.text}>Date: {result.Date}</Text>
       <Text style = {styles.text}>Time of Attending: {result.AttendingTime}</Text>
       <Text style = {styles.text}>Name of Reporter: {result.Reporter}</Text>
-        <CustomButton title="Delete" handlePress = {deleteItem}/>
+      <CustomButton title="Delete" handlePress = {deleteItem}/>
     </View>
   );
 };
