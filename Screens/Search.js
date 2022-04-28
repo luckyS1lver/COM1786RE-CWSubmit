@@ -15,7 +15,7 @@ const Search = ({navigation}) => {
     const getSearch = () => {
         try {
           db.transaction((tx) => {
-            tx.executeSql("SELECT * FROM DATABASE WHERE ActivityName = ?", [searchResult], (tx, result) => {
+            tx.executeSql("SELECT * FROM DATABASE WHERE ActivityName LIKE ? ", ['%'+searchResult+'%'], (tx, result) => {
               var len = result.rows.length;
               console.log(JSON.stringify(result.rows));
               for (let i = 0; i < len; i++) {
@@ -27,6 +27,7 @@ const Search = ({navigation}) => {
               }
             });
           });
+          setData('')
         } catch (error) {
           console.log(error);
         }
